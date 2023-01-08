@@ -17,17 +17,21 @@ const App = () => {
     if (!result.canceled) {
       console.log(result);
     } else {
-      alert("You did not select any image");
+      alert("You did not select any image.");
     }
   };
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
       <View style={styles.footContainer}>
-        <Button theme="primary" label="Choose a photo" />
+        <Button
+          theme="primary"
+          label="Choose a photo"
+          onPress={pickImageAsync}
+        />
         <Button label="Use this photo" />
       </View>
       <StatusBar style="auto" />
