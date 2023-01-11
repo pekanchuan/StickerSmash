@@ -11,6 +11,7 @@ const EmojiPicker = ({ isVisible, children, onClose }) => {
             <MaterialIcons name="close" color="#fff" size={22} />
           </Pressable>
         </View>
+        {children}
       </View>
     </Modal>
   );
