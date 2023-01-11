@@ -5,12 +5,22 @@ import { useState } from "react";
 
 import ImageViewer from "./components/ImageViewer";
 import Button from "./components/Button";
+import CircleButton from "./components/CircleButton";
+import IconButton from "./components/IconButton";
 
 const PlaceholderImage = require("./assets/images/background-image.png");
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
+
+  const onReset = () => {
+    setShowAppOptions(false);
+  };
+
+  const onAddSticker = () => {};
+
+  const onSaveImageAsync = () => {};
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -35,7 +45,17 @@ const App = () => {
         />
       </View>
       {showAppOptions ? (
-        <View />
+        <View style={styles.optionsContainer}>
+          <View style={styles.optionsRow}>
+            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
+            <IconButton
+              icon="save-alt"
+              label="Save"
+              onPress={onSaveImageAsync}
+            />
+          </View>
+        </View>
       ) : (
         <View style={styles.footContainer}>
           <Button
@@ -71,5 +91,13 @@ const styles = StyleSheet.create({
   footContainer: {
     flex: 1 / 3,
     alignItems: "center",
+  },
+  optionsContainer: {
+    position: "absolute",
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: "center",
+    flexDirection: "row",
   },
 });
