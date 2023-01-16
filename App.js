@@ -11,14 +11,20 @@ import IconButton from "./components/IconButton";
 import EmojiPicker from "./components/EmojiPicker";
 import EmojiList from "./components/EmojiList";
 import EmojiSticker from "./components/EmojiSticker";
+import * as MediaLibrary from "expo-media-library";
 
 const PlaceholderImage = require("./assets/images/background-image.png");
 
 const App = () => {
+  const [status, requestPermission] = MediaLibrary.usePermissions();
   const [isModalVisible, setisModalVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [pickedEmoji, setPickedEmoji] = useState(null);
+
+  if (status === null) {
+    requestPermission();
+  }
 
   const onReset = () => {
     setShowAppOptions(false);
